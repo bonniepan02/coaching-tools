@@ -2,10 +2,11 @@ document.addEventListener("DOMContentLoaded", function () {
   let itemsData = JSON.parse(localStorage.getItem("itemsData")) || [
     {
       name: "Powerful Questions",
-      timing: "- to explore\n - to move to action",
-      goal: "to envoke thought, clarity, discovery, their learning or move them to action",
-      questions: "",
+      timing: " - to explore\n - to move to action",
+      goal: "- to envoke thought, clarity, discovery, or move them to action\n - invite coachees to look inside or into the future",
+      questions: "- What does that mean.../n - How...",
       status: false,
+      tip: "- Listen and wait. Don't fill in the momentary silence\n",
     },
     {
       name: "Metaphor",
@@ -155,6 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
       timingCell.innerHTML = renderMarkdown(item.timing);
       // Add the data-render-markdown attribute
       timingCell.setAttribute("data-render-markdown", "true");
+      timingCell.classList.add("markdown-cell");
 
       statusCell.appendChild(checkbox);
 

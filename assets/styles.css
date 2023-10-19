@@ -41,10 +41,14 @@ th {
 td {
     text-align: left;
     /* Center text in cells */
-    padding: 10px;
+    padding: 8px;
     /* Add padding to cells for spacing */
     white-space: nowrap;
     /* Prevent text from wrapping */
+}
+.markdown-cell {
+    padding: 10px;
+    list-style-position: inside;
 }
 
 /* Style the odd rows with a background color */

@@ -1,0 +1,52 @@
+/* Reset some default styles for better consistency */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Center the content on the page */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    margin: 20px 0;
+}
+
+.checklist {
+    list-style: none;
+    padding: 0;
+}
+
+.checklist li {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Customize the checkbox appearance */
+input[type="checkbox"]+label::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    margin-right: 10px;
+}
+
+input[type="checkbox"]:checked+label::before {
+    background-color: #4CAF50;
+    /* Green */
+}
+
+/* Style the label text */
+label {
+    font-size: 18px;
+}

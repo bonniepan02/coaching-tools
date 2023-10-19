@@ -8,7 +8,7 @@
 /* Center the content on the page */
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
+    text-align: left;
 }
 
 h1 {
@@ -39,9 +39,9 @@ th {
 
 /* Apply styles to the table data cells (td elements) */
 td {
-    text-align: center;
+    text-align: left;
     /* Center text in cells */
-    padding: 8px;
+    padding: 10px;
     /* Add padding to cells for spacing */
     white-space: nowrap;
     /* Prevent text from wrapping */

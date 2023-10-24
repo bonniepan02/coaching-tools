@@ -7,18 +7,21 @@ function renderMarkdown(text) {
     return text; // Fallback to plain text
   }
 }
-function loadPageContent() {
-  let storedData = JSON.parse(localStorage.getItem("itemsData"));
+function getItemsData(defaultData) {
   let itemsData = [];
-
+  let storedData = [];
+  try {
+    storedData = JSON.parse(localStorage.getItem("itemsData"));
+  } catch (error) {
+    console.error("Error parsing content in local storage");
+  }
   if (Array.isArray(storedData) && storedData.length > 0) {
     itemsData = storedData;
-    console.log("Data is not empty", itemsData);
+    return itemsData;
   } else {
-    console.log("Data is empty or not a list.");
     itemsData = defaultData;
     localStorage.setItem("itemsData", JSON.stringify(itemsData));
-    console.log("Assigning data", itemsData);
+    return itemsData;
   }
 }
 
@@ -53,12 +56,12 @@ function updatePageContent(itemsData) {
     timingCell.setAttribute("data-render-markdown", "true");
     timingCell.classList.add("markdown-cell");
 
-    goalCell.innerHTML = renderMarkdown(item.timing);
+    goalCell.innerHTML = renderMarkdown(item.goal);
     // Add the data-render-markdown attribute
     goalCell.setAttribute("data-render-markdown", "true");
     goalCell.classList.add("markdown-cell");
 
-    questionCell.innerHTML = renderMarkdown(item.timing);
+    questionCell.innerHTML = renderMarkdown(item.questions);
     // Add the data-render-markdown attribute
     questionCell.setAttribute("data-render-markdown", "true");
     questionCell.classList.add("markdown-cell");
@@ -79,27 +82,20 @@ function updatePageContent(itemsData) {
     tableBody.appendChild(row);
   });
 }
-async function fetchDefaultData() {
-  try {
-    const response = await fetch("assets/coaching-skills.json");
-    const defaultData = await response.json();
-    return defaultData;
-  } catch (error) {
-    console.error("Error fetching default data:", error);
-    return [];
-  }
-}
-
-(async () => {
-  const defaultData = await fetchDefaultData();
-  console.log("Loading page", defaultData);
-
-  loadPageContent();
-})();
 
 document.addEventListener("DOMContentLoaded", function () {
-  let storedData = JSON.parse(localStorage.getItem("itemsData"));
-  if (Array.isArray(storedData) && storedData.length > 0) {
-    updatePageContent(storedData);
-  }
+  fetch("assets/coaching-skills.json")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Still loading data...");
+      }
+      return response.json();
+    })
+    .then((defaultData) => {
+      itemsData = getItemsData(defaultData);
+      updatePageContent(itemsData);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 });

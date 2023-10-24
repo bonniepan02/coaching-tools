@@ -7,6 +7,20 @@ function renderMarkdown(text) {
     return text; // Fallback to plain text
   }
 }
+function loadPageContent() {
+  let storedData = JSON.parse(localStorage.getItem("itemsData"));
+  let itemsData = [];
+
+  if (Array.isArray(storedData) && storedData.length > 0) {
+    itemsData = storedData;
+    console.log("Data is not empty", itemsData);
+  } else {
+    console.log("Data is empty or not a list.");
+    itemsData = defaultData;
+    localStorage.setItem("itemsData", JSON.stringify(itemsData));
+    console.log("Assigning data", itemsData);
+  }
+}
 
 function updatePageContent(itemsData) {
   // Function to update the item's status in the data and Local Storage
@@ -39,6 +53,16 @@ function updatePageContent(itemsData) {
     timingCell.setAttribute("data-render-markdown", "true");
     timingCell.classList.add("markdown-cell");
 
+    goalCell.innerHTML = renderMarkdown(item.timing);
+    // Add the data-render-markdown attribute
+    goalCell.setAttribute("data-render-markdown", "true");
+    goalCell.classList.add("markdown-cell");
+
+    questionCell.innerHTML = renderMarkdown(item.timing);
+    // Add the data-render-markdown attribute
+    questionCell.setAttribute("data-render-markdown", "true");
+    questionCell.classList.add("markdown-cell");
+
     statusCell.appendChild(checkbox);
 
     // Add event listener to checkbox for status updates
@@ -69,33 +93,13 @@ async function fetchDefaultData() {
 (async () => {
   const defaultData = await fetchDefaultData();
   console.log("Loading page", defaultData);
-  let storedData = JSON.parse(localStorage.getItem("itemsData"));
-  let itemsData = [];
 
-  if (Array.isArray(storedData) && storedData.length > 0) {
-    itemsData = storedData;
-    console.log("Data is not empty", itemsData);
-  } else {
-    console.log("Data is empty or not a list.");
-    itemsData = defaultData;
-    localStorage.setItem("itemsData", JSON.stringify(itemsData));
-    console.log("Assigning data", itemsData);
-  }
+  loadPageContent();
 })();
 
 document.addEventListener("DOMContentLoaded", function () {
   let storedData = JSON.parse(localStorage.getItem("itemsData"));
-  let itemsData = [];
-
   if (Array.isArray(storedData) && storedData.length > 0) {
-    itemsData = storedData;
-    console.log("Data is not empty", itemsData);
-  } else {
-    console.log("Data is empty or not a list.");
-    itemsData = defaultData;
-    localStorage.setItem("itemsData", JSON.stringify(itemsData));
-    console.log("Assigning data", itemsData);
+    updatePageContent(storedData);
   }
-
-  updatePageContent(itemsData);
 });

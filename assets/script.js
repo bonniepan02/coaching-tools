@@ -81,8 +81,8 @@ async function fetchDefaultData() {
     localStorage.setItem("itemsData", JSON.stringify(itemsData));
     console.log("Assigning data", itemsData);
   }
-  updatePageContent(itemsData);
 })();
+
 document.addEventListener("DOMContentLoaded", function () {
   let storedData = JSON.parse(localStorage.getItem("itemsData"));
   let itemsData = [];

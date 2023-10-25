@@ -8,14 +8,14 @@
     },
     {
         "name": "Metaphor",
-        "timing": "",
-        "goal": "Illustrait a point via visual",
+        "timing": " - get clarity on situation or feeling",
+        "goal": "Illustrait a point via visual picture",
         "questions": "",
         "status": false
     },
     {
         "name": "Bottom lining",
-        "timing": "",
+        "timing": " - to confirm\n - to summarize to move forward",
         "goal": "",
         "questions": "",
         "status": false
@@ -23,28 +23,28 @@
     {
         "name": "Challenging",
         "timing": "",
-        "goal": "",
+        "goal": "A clear, bold, and outrageous request intended to stretch a client to see their self-imposed limits",
         "questions": "",
         "status": false
     },
     {
         "name": "Blurting(Intuition)",
-        "timing": "",
-        "goal": "",
+        "timing": "throughout",
+        "goal": " for coaches to access their intuition, offering it without attachment",
         "questions": "",
         "status": false
     },
     {
         "name": "Acknowledgement",
-        "timing": "",
-        "goal": "",
-        "questions": "",
+        "timing": "c",
+        "goal": "Make client feel seen and known",
+        "questions": " - <Name>, you are ....\n - Your commitment is strong...",
         "status": false
     },
     {
         "name": "Articulating what's going on",
-        "timing": "",
-        "goal": "",
+        "timing": "throughout",
+        "goal": "- to listen at level 2 and 3\n",
         "questions": "",
         "status": false
     },
